@@ -98,7 +98,7 @@ GLOBAL_CSS = """
     
     /* Toast override */
     div[data-baseweb="toast"] {
-        background-color:
+        background-color: #212529;
     }
     
 </style>
@@ -110,17 +110,17 @@ def get_metric_card_html(label, value, delta=None, color_class="neutral"):
     color_class can be 'green' (positive), 'red' (negative), or 'neutral'.
     """
     color_map = {
-        "green": "
-        "red": "
-        "neutral": "
+        "green": "#00e676",
+        "red": "#ff5252",
+        "neutral": "#e0e0e0"
     }
-    c = color_map.get(color_class, "
+    c = color_map.get(color_class, "#e0e0e0")
     
     delta_html = ""
     if delta:
-        delta_color = "
-        sign = "+" if delta > 0 else ""
-        delta_html = f'<div class="metric-delta" style="color: {delta_color}">{sign}{delta:.2f}</div>'
+        delta_color = "#00e676" if "green" in color_class else "#ff5252"
+        arrow = "↑" if "green" in color_class else "↓"
+        delta_html = f'<div style="color: {delta_color}; font-size: 0.9rem; margin-top: 4px;">{arrow} {delta}</div>'
     
     return f"""
     <div class="metric-container">

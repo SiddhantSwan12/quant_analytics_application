@@ -35,7 +35,7 @@ if 'md_client' not in st.session_state:
 
 st.sidebar.title("Configuration")
 
-st.sidebar.markdown("
+st.sidebar.markdown("### Data Source")
 data_source = st.sidebar.radio("Select Data Source", ["Live Feed", "Upload OHLC Data"])
 
 if data_source == "Upload OHLC Data":

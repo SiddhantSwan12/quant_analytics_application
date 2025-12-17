@@ -56,15 +56,15 @@ class Dashboard:
         """
         if curr_z > z_thresh:
             signal = "SELL"
-            color = "
+            color = "#ff5252"
             bg_color = "rgba(255, 82, 82, 0.1)"
         elif curr_z < -z_thresh:
             signal = "BUY"
-            color = "
+            color = "#00e676"
             bg_color = "rgba(0, 230, 118, 0.1)"
         else:
             signal = "HOLD"
-            color = "
+            color = "#90a4ae"
             bg_color = "rgba(144, 164, 174, 0.1)"
             
         html = f"""
@@ -136,14 +136,14 @@ class Dashboard:
                 text=f"<b>{curr_spread_val:.2f}</b>",
                 showarrow=True,
                 arrowhead=2,
-                arrowcolor="
-                bgcolor="
-                font=dict(size=12, color="
+                arrowcolor="#e0e0e0",
+                bgcolor="#1e1e1e",
+                font=dict(size=12, color="#e0e0e0"),
                 row=1, col=1
             )
             
         if not zscore.empty:
-            fig.add_trace(go.Scatter(x=zscore.index, y=zscore.values, name="Z-Score", mode='lines', line=dict(color='
+            fig.add_trace(go.Scatter(x=zscore.index, y=zscore.values, name="Z-Score", mode='lines', line=dict(color='#29b6f6', width=1)), row=2, col=1)
             
             curr_z_val = zscore.iloc[-1] if not pd.isna(zscore.iloc[-1]) else 0
             fig.add_annotation(
@@ -151,14 +151,14 @@ class Dashboard:
                 text=f"<b>{curr_z_val:.2f}</b>",
                 showarrow=True,
                 arrowhead=2,
-                arrowcolor="
-                bgcolor="
-                font=dict(size=12, color="
+                arrowcolor="#ffeb3b",
+                bgcolor="#1e1e1e",
+                font=dict(size=12, color="#ffeb3b"),
                 row=2, col=1
             )
             
-            fig.add_hline(y=z_thresh, line_dash="dash", line_color="
-            fig.add_hline(y=-z_thresh, line_dash="dash", line_color="
+            fig.add_hline(y=z_thresh, line_dash="dash", line_color="#ff5252", row=2, col=1)
+            fig.add_hline(y=-z_thresh, line_dash="dash", line_color="#00e676", row=2, col=1)
             fig.add_hline(y=0, line_dash="dot", line_color="gray", row=2, col=1)
 
         fig.update_layout(height=400, margin=dict(l=0, r=0, t=20, b=0), template="plotly_dark", showlegend=False, uirevision='constant', transition={'duration': 0})
@@ -171,7 +171,7 @@ class Dashboard:
             return
             
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=rolling_corr.index, y=rolling_corr.values, name="Correlation", fill='tozeroy', line=dict(color='
+        fig.add_trace(go.Scatter(x=rolling_corr.index, y=rolling_corr.values, name="Correlation", fill='tozeroy', line=dict(color='#ab47bc', width=2)))
         fig.add_hline(y=0, line_color="white", line_dash="dot")
         fig.update_layout(title="Rolling Correlation", height=250, margin=dict(l=0, r=0, t=30, b=0), template="plotly_dark", yaxis_range=[-1.1, 1.1], uirevision='constant', transition={'duration': 0})
         st.plotly_chart(fig, use_container_width=True, key="corr_chart")
