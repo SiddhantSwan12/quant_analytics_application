@@ -1,6 +1,12 @@
 # Quant Analytics Dashboard
 
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://siddhantswan.streamlit.app)
+
 A professional real-time quantitative analytics dashboard for cryptocurrency pairs trading, featuring live market data ingestion, statistical analysis, and AI-powered insights.
+
+## 🚀 Live Demo
+**Try the deployed app here:** [https://siddhantswan.streamlit.app](https://siddhantswan.streamlit.app)
 
 ## Features
 
