@@ -119,8 +119,13 @@ if live_update:
             df_a = pd.DataFrame()
             df_b = pd.DataFrame()
     else:
-        df_a = st.session_state.storage.get_ohlcv(symbol_a, timeframe, limit=500)
-        df_b = st.session_state.storage.get_ohlcv(symbol_b, timeframe, limit=500)
+        # Fetch raw ticks
+        df_a_ticks = st.session_state.storage.get_ticks(symbol_a, lookback_minutes=10)
+        df_b_ticks = st.session_state.storage.get_ticks(symbol_b, lookback_minutes=10)
+        
+        # Resample to OHLCV
+        df_a = Resampler.resample(df_a_ticks, timeframe)
+        df_b = Resampler.resample(df_b_ticks, timeframe)
     
     
     if df_a.empty or df_b.empty:
