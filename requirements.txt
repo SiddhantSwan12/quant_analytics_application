@@ -8,3 +8,4 @@ websockets
 aiohttp
 groq
 python-dotenv
+google-genai
